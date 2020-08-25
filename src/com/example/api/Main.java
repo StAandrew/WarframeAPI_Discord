@@ -31,10 +31,11 @@ public class Main extends ListenerAdapter {
         if (messageReceivedEvent.getMessage().getContentRaw().equals("ping")) {
             messageReceivedEvent.getChannel().sendMessage("pong").queue();
         }
-        if (messageReceivedEvent.getMessage().getContentRaw().equals("bot update")) {
+        if (messageReceivedEvent.getMessage().getContentRaw().equals("get invasions")) {
             String result = null;
             try {
                 result = fetcher.fetch().getUniqueItems().toString();
+                result = result.substring(1, result.length() - 1);
             } catch (Exception e) {
                 e.printStackTrace();
                 result = "Failed to fetch items";
