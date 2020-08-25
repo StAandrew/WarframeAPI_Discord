@@ -32,7 +32,13 @@ public class Main extends ListenerAdapter {
             messageReceivedEvent.getChannel().sendMessage("pong").queue();
         }
         if (messageReceivedEvent.getMessage().getContentRaw().equals("bot update")) {
-            String result = fetcher.fetch().getUniqueItems().toString();
+            String result = null;
+            try {
+                result = fetcher.fetch().getUniqueItems().toString();
+            } catch (Exception e) {
+                e.printStackTrace();
+                result = "Failed to fetch items";
+            }
             messageReceivedEvent.getChannel().sendMessage(result).queue();
         }
     }
